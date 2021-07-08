@@ -1,13 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
+$dark-red:#740316;
+$dark-green: #1a8755;
+$dark-green-hover: #084d2d;
+$white:#fff;
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: 'PT Sans', sans-serif;
   }
-  
+  p{
+    margin-bottom:0 !important;
+  }
+  .img-fluid{
+    max-width: 100%;
+    height:auto;
+  }
   .home,
-  .services,
+  .services-banner,
   .products,
   .sign-up {
     display: flex;
@@ -17,7 +27,7 @@
     font-size: 3rem;
   }
   
-  .services {
+  .services-banner {
     background-image: url('./images/img-2.jpg');
     background-position: center;
     background-size: cover;
@@ -86,3 +96,105 @@
 }
 
 /*-- destinations gallery css ends --*/
+
+/*-- services page styles start --*/
+
+.services{
+
+
+  .services-data{
+    padding: {
+      top:50px;
+      bottom:50px;
+    }
+    .service-card{
+      margin: {
+        bottom: 10px;
+      }
+      &:last-child{
+        margin: {
+          bottom: 0px;
+        }
+      }
+      .service-data{
+        background-color: #eff;
+        padding:1rem;
+        .service-data-heading{
+          font-size: 2rem;
+          text-transform: uppercase;
+          margin: {
+            bottom: 15px;
+          }
+          border: {
+            bottom: 2px solid #ddd;
+          }
+          padding: {
+            bottom:5px;
+          }
+        }
+        .service-data-style, .service-data-setting, .service-data-tag{
+          margin: {
+            bottom:15px;
+          }
+          display: flex;
+          width:100%;
+          p:nth-of-type(1){
+            width:20%;
+            text-align: left;
+            padding: {
+              left: 20px;
+            }
+            font-size:1.2rem;
+            font-weight:700;
+          }
+          p:nth-of-type(2){
+            flex-grow: 2;
+            text-align:left;
+            font-size:1.1rem;
+          }
+        }
+        .service-data-price{
+          display: flex;
+          width:100%;
+          background-color: #eee;
+          padding:10px;
+          justify-content: center;
+          p:nth-of-type(1){
+            font-size:1.4rem;
+          }
+          p:nth-of-type(2){
+            font-size:1.4rem;
+            font-weight:bold;
+            padding: {
+              left: 20px;
+            }
+            color:$dark-red;
+          }
+        }
+        .view-service-btn{
+          display: flex;
+          width:100%;
+          background-color: $dark-green;
+          margin: {
+            top:15px;
+            bottom: 0;
+          }
+          padding:15px;
+          color:$white;
+          justify-content: center;
+          text-transform: uppercase;
+          text-decoration: none;
+          border-radius: 2rem;
+          font-size:1.1rem;
+          transition:all 1s ease;
+          &:hover{
+            background-color: $dark-green-hover;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+/*-- services page styles end --*/
