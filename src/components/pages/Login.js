@@ -19,46 +19,24 @@ import {
   FormText,
 } from "reactstrap";
 import "../../App.scss";
-function SignUp() {
-  // states for form field values.
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailId, setEmailId] = useState("");
-  const [phoneNo, setPhoneNo] = useState("");
 
-  return (
-    <Container>
+function Login() {
+
+    const [password, setPassword] = useState("");
+    const [emailId, setEmailId] = useState("");
+
+    return (
+<Container>
       <Row>
         <Col sm={{ size: 8, offset: 2 }}>
-          <div className="signup-layout">
+          <div className="login-layout">
             <Card>
               <CardBody>
                 <CardTitle className="text-center">
-                  Create New Account
+                  Access Your Account
                 </CardTitle>
                 <CardText className="px-5 py-2">
                   <Form>
-                  <Row form className="mb-2">
-                      <Col md={12}>
-                        <FormGroup row>
-                          <Label for="namefield" md={2} size="lg">
-                            Name
-                          </Label>
-                          <Col md={10}>
-                            <Input
-                              type="text"
-                              name="name"
-                              id="namefield"
-                              placeholder="Input Your Name"
-                              bsSize="lg"
-                              value={name}
-                              onChange={(e) => setName(e.target.value)}
-                              autoFocus
-                            />
-                          </Col>
-                        </FormGroup>
-                      </Col>
-                    </Row>
                     <Row form className="mb-2">
                       <Col md={12}>
                         <FormGroup row>
@@ -74,31 +52,14 @@ function SignUp() {
                               bsSize="lg"
                               value={emailId}
                               onChange={(e) => setEmailId(e.target.value)}
+                              autoFocus
                             />
                           </Col>
                         </FormGroup>
                       </Col>
                     </Row>
-                    <Row form className="mb-2">
-                      <Col md={12}>
-                        <FormGroup row>
-                          <Label for="phonenofield" md={2} size="lg">
-                            Mobile
-                          </Label>
-                          <Col md={10}>
-                            <Input
-                              type="text"
-                              name="phoneno"
-                              id="phonenofield"
-                              placeholder="Input Your Mobile No"
-                              bsSize="lg"
-                              value={phoneNo}
-                              onChange={(e) => setPhoneNo(e.target.value)}
-                            />
-                          </Col>
-                        </FormGroup>
-                      </Col>
-                    </Row>
+                    
+                    
                     <Row form className="mb-2">
                       <Col md={12}>
                         <FormGroup row>
@@ -135,14 +96,14 @@ function SignUp() {
                 </CardText>
               </CardBody>
               <CardFooter className="text-muted text-center">
-                <p>Already have an Account! <span><Link to="/login" className="btn btn-login">Log In</Link></span></p>
+                <p>Don't have an Account! <span><Link to="/sign-up" className="btn btn-signup">Sign Up</Link></span></p>
               </CardFooter>
             </Card>
           </div>
         </Col>
       </Row>
     </Container>
-  );
+    )
 }
 
-export default SignUp;
+export default Login

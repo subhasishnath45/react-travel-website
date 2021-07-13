@@ -6,10 +6,24 @@ import ImageSlider from '../ImageSlider';
 import servicesData from '../../services-data';
 import '../../App.scss';
 
+
 // specifying our image path.
 const imagePath = process.env.PUBLIC_URL + '/images/';
 
+
+// a functional sub component that create various types of buttons.
+const TagButton = ({name, handleSetTag, tagActive})=>{
+
+    return(
+        <button className={`tag ${tagActive ? 'active': null}`} onClick={()=>handleSetTag(name)}>
+            {name.toUpperCase()}
+        </button>
+    );
+
+}
+
 function Services() {
+    // state variables for changing tags and filtering services.
     const [tag, setTag] = useState('all');
     const [filteredServices, setFilteredServices] = useState([]);
 
@@ -25,15 +39,39 @@ function Services() {
             <Container>
                 <Row>
                     <Col xs="12">
+                        <div className="tags">
+                            <TagButton name="all" tagActive={tag === 'all' ? true : false} handleSetTag={setTag} />
+                            <TagButton name="hotel" tagActive={tag === 'hotel' ? true : false} handleSetTag={setTag} />
+                            <TagButton name="villa" tagActive={tag === 'villa' ? true : false} handleSetTag={setTag} />
+                        </div>
+                    </Col>
+                    <Col xs="12">
                     <section className="services-data">
-                        {filteredServices.map((service)=>{
+                        {filteredServices.map((service,index)=>{
+                            var imgArr = new Array();
                             return(
-                                <div key={service.id} className="service-card">
+                                <div key={service.id} className="service-card" data-index={index}>
                                     <Row>
-                                    <Col xs="6" style={{'padding-right': '0px'}}>
-                                    <img className="serviceImage img-fluid" src={`${imagePath}${service.images[0].src}`} alt={`${service.images[0].title}${service.images[0].description}`} />
+                                    <Col xs="6" style={{'paddingRight': '0px'}}>
+                                        {
+                                            service.images.map((image)=> imgArr.push(`${image.src}`))
+                                        }
+                                        <ImageSlider images={imgArr}>
+                                                <div
+                                                    style={{
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    alignItems: "center",
+                                                    color: "#fff",
+                                                    }}
+                                                >
+                                                <h1>{service.name}</h1>
+                                                <p>{service.Setting}</p>
+                                            </div>
+                                        </ImageSlider>
+                                    {/* <img className="serviceImage img-fluid" src={`${imagePath}${service.images[0].src}`} alt={`${service.images[0].title}${service.images[0].description}`} /> */}
                                     </Col>
-                                    <Col xs="6" className="service-data" style={{'padding-left': '15px'}}>
+                                    <Col xs="6" className="service-data" style={{'paddingLeft': '15px'}}>
                                         <Col xs="12">
                                             <h3 className="service-data-heading">
                                                 {service.name}

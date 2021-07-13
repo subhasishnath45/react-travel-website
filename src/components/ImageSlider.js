@@ -21,6 +21,7 @@ const Dot = styled.div`
   opacity: ${(props) => (props.isActive ? 1 : 0.5)};
   margin: 5px;
   transition: 750ms all ease-in-out;
+  cursor: pointer;
 `;
 // sub component.
 const Indicator = ({ currentSlide, amountSlides, nextSlide }) => {
@@ -40,7 +41,7 @@ const Indicator = ({ currentSlide, amountSlides, nextSlide }) => {
   };
 
 const Wrapper = styled.div`
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: hidden;
@@ -82,17 +83,20 @@ function ImageSlider(
         ...props
     }
 ) {
+  // following state variable indicates the default slide.
     const [currentSlide, setCurrentSlide] = useState(0);
+    // following method will go to the next slide
     function nextSlide(slideIndex = currentSlide + 1) {
+
         const newSlideIndex = slideIndex >= images.length ? 0 : slideIndex;
         setCurrentSlide(newSlideIndex);
     }
-
+    // changing slide using useEffect hook
     useEffect(() => {
         const timer = setTimeout(() => {
           nextSlide();
         }, autoPlayTime);
-    
+        // The clearTimeout() method clears a timer set with the setTimeout() method.
         return () => clearTimeout(timer);
       }, [currentSlide]);
 
