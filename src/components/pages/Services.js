@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import ImageSlider from '../ImageSlider';
 import servicesData from '../../services-data';
 import '../../App.scss';
+import Loader from '../Loader';
 
 
 // specifying our image path.
@@ -26,15 +27,27 @@ function Services() {
     // state variables for changing tags and filtering services.
     const [tag, setTag] = useState('all');
     const [filteredServices, setFilteredServices] = useState([]);
+    // for loader to open or close
+    const [open, setOpen] = useState(true);
 
     useEffect(
         () => {
             // destination filtering is done.
             tag === 'all' ? setFilteredServices(servicesData) : setFilteredServices(servicesData.filter(service => service.tag === tag));
         }, [tag])
+    
+    // following useState is for loader 
+    useEffect(()=>{
+        setInterval(() => {
+            if (document.readyState === 'complete') {
+                setOpen(false);
+            }
+          }, 100);
+    },[])
 
     return (
         <div className="services">
+            {open===true ? <Loader open/>: <Loader />}
             <h1 className="services-banner">Services</h1>
             <Container>
                 <Row>
@@ -52,11 +65,11 @@ function Services() {
                             return(
                                 <div key={service.id} className="service-card" data-index={index}>
                                     <Row>
-                                    <Col xs="6" style={{'paddingRight': '0px'}}>
+                                    <Col md="6" style={{'paddingRight': '0px'}}>
                                         {
                                             service.images.map((image)=> imgArr.push(`${image.src}`))
                                         }
-                                        <ImageSlider images={imgArr}>
+                                        <ImageSlider images={imgArr} className="service-slider-images">
                                                 <div
                                                     style={{
                                                     display: "flex",
@@ -64,6 +77,7 @@ function Services() {
                                                     alignItems: "center",
                                                     color: "#fff",
                                                     }}
+                                                    className="slider-caption"
                                                 >
                                                 <h1>{service.name}</h1>
                                                 <p>{service.Setting}</p>
@@ -71,7 +85,7 @@ function Services() {
                                         </ImageSlider>
                                     {/* <img className="serviceImage img-fluid" src={`${imagePath}${service.images[0].src}`} alt={`${service.images[0].title}${service.images[0].description}`} /> */}
                                     </Col>
-                                    <Col xs="6" className="service-data" style={{'paddingLeft': '15px'}}>
+                                    <Col md="6" className="service-data" style={{'paddingLeft': '15px'}}>
                                         <Col xs="12">
                                             <h3 className="service-data-heading">
                                                 {service.name}

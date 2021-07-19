@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import destinationsData from '../../destinations-data';
 import SimpleReactLightbox, {SRLWrapper} from 'simple-react-lightbox';
 import '../../App.scss';
+import Loader from '../Loader';
 // specifying our image path.
 const imagePath = process.env.PUBLIC_URL + '/images/';
 
@@ -42,7 +43,8 @@ const options = {
 function Destinations() {
     const [tag, setTag] = useState('all');
     const [filteredImages, setFilteredImages] = useState([]);
-
+    // for loader to open or close
+    const [open, setOpen] = useState(true);
 	useEffect(
 		() => {
 			// image filtering is done.
@@ -50,9 +52,18 @@ function Destinations() {
 		},
 		[tag]
 	);
+    // following useState is for loader 
+    useEffect(()=>{
+        setInterval(() => {
+            if (document.readyState === 'complete') {
+                setOpen(false);
+            }
+          }, 100);
+    },[])
 
     return (
         <div className="destinations">
+			{open===true ? <Loader open/>: <Loader />}
             <div className="tags">
                 <TagButton name="all" tagActive={tag === 'all' ? true : false} handleSetTag={setTag} />
                 <TagButton name="popular" tagActive={tag === 'popular' ? true : false} handleSetTag={setTag} />

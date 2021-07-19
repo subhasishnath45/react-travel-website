@@ -1,10 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
 $dark-red:#740316;
 $dark-green: #1a8755;
 $dark-green-hover: #084d2d;
 $dark-blue:#180374;
 $white:#fff;
 $light-gray:#cfcfcf;
+$clr-grey-5: hsl(210, 22%, 49%);
+$font-family-kaushan-script:'Kaushan Script', cursive;
 * {
     box-sizing: border-box;
     margin: 0;
@@ -278,4 +281,219 @@ $light-gray:#cfcfcf;
 
 /*-- signup and login page ends --*/
 
+/*-- products listing page starts--*/
 
+.product-lists{
+  padding: {
+    bottom:50px;
+  }
+  .products-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    .product{
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0px 3px 1px 0px rgba(0,0,0,0.5);
+      padding: {
+        right: 15px;
+        left:15px;
+        top:10px;
+      }
+      transition: all 0.5s;
+      &:hover{
+        cursor: pointer;
+        box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.5);
+      }
+      .product-img{
+        height: 300px;
+        object-fit: contain;
+        object-position: center;
+      }
+      .product-info{
+
+        .single-product-link{
+          text-decoration: none;
+          color: $clr-grey-5;
+          h4{
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*-- products listing page ends --*/
+
+.singleItem{
+  padding: {
+    top:50px;
+    bottom:50px;
+  }
+  .single-product-img{
+    img{
+      height: 500px;
+      width: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+  }
+  .single-product-right{
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    justify-content: center;
+    .singleProductTitle{
+      font-size: 1.7rem;
+      font-weight: bold;
+      margin:20px 0;
+    }
+    .singleProductDesc{
+      margin: {
+        bottom:40px;
+      }
+      h4{
+        border: {
+          bottom: 1px solid $clr-grey-5;
+        }
+        padding: {
+          bottom:10px;
+        }
+      }
+      p{
+        font-size:1.2rem;
+        color:#09204d;
+        font-style: italic;
+      }
+    }
+    ul{
+      padding: {
+        left: 0 !important;
+      }
+      li{
+        margin:20px 0;
+        font-size: 1.2rem;
+        list-style-type: none;
+        &:nth-child(1){
+          // background-color: red;
+          span{
+            font-family: $font-family-kaushan-script;
+            color: $clr-grey-5;
+          }
+        }
+        &:nth-child(2){
+          // background-color: yellow;
+          span{
+            font-family: $font-family-kaushan-script;
+            text-transform: uppercase;
+            color: $dark-blue;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+  ol, ul {
+    padding-left: 0rem !important;
+}
+
+  .product-lists .products-container{
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      grid-gap: 1rem;
+      gap: 1rem;
+  }
+  .slider-caption {
+    height: 400px !important;
+    justify-content: center;
+  }
+
+.service-slider-images {
+    height: 400px !important;
+  }
+  .service-data-style, .service-data-setting, .service-data-tag {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      p{
+        padding-left:0 !important;
+      }
+  }
+  .destinations .container{
+    width: 100%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 10px;
+    gap: 10px;
+    padding: {
+      top:20px;
+      bottom:20px;
+    }
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+  ol, ul {
+    padding-left: 0rem !important;
+}
+
+  .product-lists .products-container{
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      grid-gap: 1rem;
+      gap: 1rem;
+  }
+  .slider-caption {
+    height: 400px !important;
+    justify-content: center;
+  }
+
+.service-slider-images {
+    height: 400px !important;
+  }
+  .service-data-style, .service-data-setting, .service-data-tag {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      p{
+        padding-left:0 !important;
+      }
+  }
+  .destinations .container{
+    width: 100%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 10px;
+    gap: 10px;
+    padding: {
+      top:20px;
+      bottom:20px;
+    }
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+  
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  
+}
